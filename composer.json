@@ -1,13 +1,22 @@
 {
     "name": "nathanheffley/nova-algolia",
     "description": "Algolia integration with Laravel Nova.",
+    "homepage": "https://github.com/NathanHeffley/nova-algolia",
     "keywords": [
         "laravel",
         "nova"
     ],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Nathan Heffley",
+            "email": "nathanheffley@gmail.com"
+        }
+    ],
     "require": {
-        "php": ">=7.1.0"
+        "php": ">=7.1.0",
+        "laravel/scout": "^5.0",
+        "algolia/algoliasearch-client-php": "^1.27"
     },
     "autoload": {
         "psr-4": {
