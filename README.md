@@ -3,6 +3,10 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/nathanheffley/nova-algolia.svg?style=flat-square)](https://packagist.org/packages/nathanheffley/nova-algolia)
 [![Total Downloads](https://img.shields.io/packagist/dt/nathanheffley/nova-algolia.svg?style=flat-square)](https://packagist.org/packages/nathanheffley/nova-algolia)
 
+<img alt="image" src="https://raw.githubusercontent.com/NathanHeffley/nova-algolia/master/algolia-page.png">
+
+<img alt="image" src="https://raw.githubusercontent.com/NathanHeffley/nova-algolia/master/resource-tool.png">
+
 Note: certain features on the main tool page currently only work if you use the default index name for your models. If you are setting a custom `searchableAs` value you will not be able to use the custom page. You can still use the Resource Tool.
 
 ## Installation
