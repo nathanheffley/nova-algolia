@@ -1,7 +1,7 @@
 # Algolia integration with Laravel Nova.
 
-[![Latest Stable Version](https://poser.pugx.org/nathanheffley/nova-algolia/v/stable)](https://packagist.org/packages/nathanheffley/nova-algolia?format=flat)
-[![Total Downloads](https://poser.pugx.org/nathanheffley/nova-algolia/downloads)](https://packagist.org/packages/nathanheffley/nova-algolia?format=flat)
+[![Latest Stable Version](https://poser.pugx.org/nathanheffley/nova-algolia/v/stable?format=flat)](https://packagist.org/packages/nathanheffley/nova-algolia)
+[![Total Downloads](https://poser.pugx.org/nathanheffley/nova-algolia/downloads?format=flat)](https://packagist.org/packages/nathanheffley/nova-algolia)
 
 <img alt="image" src="https://raw.githubusercontent.com/NathanHeffley/nova-algolia/master/algolia-page.png">
 
