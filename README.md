@@ -1,11 +1,9 @@
 # Algolia integration with Laravel Nova.
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/nathanheffley/nova-algolia.svg?style=flat-square)](https://packagist.org/packages/nathanheffley/nova-algolia)
-[![Total Downloads](https://img.shields.io/packagist/dt/nathanheffley/nova-algolia.svg?style=flat-square)](https://packagist.org/packages/nathanheffley/nova-algolia)
+[![Latest Stable Version](https://poser.pugx.org/nathanheffley/nova-algolia/v/stable)](https://packagist.org/packages/nathanheffley/nova-algolia?format=flat)
+[![Total Downloads](https://poser.pugx.org/nathanheffley/nova-algolia/downloads)](https://packagist.org/packages/nathanheffley/nova-algolia?format=flat)
 
 <img alt="image" src="https://raw.githubusercontent.com/NathanHeffley/nova-algolia/master/algolia-page.png">
-
-<img alt="image" src="https://raw.githubusercontent.com/NathanHeffley/nova-algolia/master/resource-tool.png">
 
 Note: certain features on the main tool page currently only work if you use the default index name for your models. If you are setting a custom `searchableAs` value you will not be able to use the custom page. You can still use the Resource Tool.
 
@@ -46,6 +44,8 @@ public function fields(Request $request)
     ];
 }
 ```
+
+<img alt="image" src="https://raw.githubusercontent.com/NathanHeffley/nova-algolia/master/resource-tool.png">
 
 If you have not set up Scout or Algolia yet, follow the directions from the official instructions: [Algolia and Laravel Scout](https://www.algolia.com/doc/api-client/laravel/algolia-and-scout/).
 
