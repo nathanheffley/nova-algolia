@@ -15,7 +15,7 @@
         </card>
 
         <portal to="modals">
-            <modal v-if="flushName" @close="closeConfirmFlush">
+            <modal v-if="flushName" @modal-close="closeConfirmFlush">
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden" style="width: 460px;">
                     <div class="p-8">
                         <h2 class="mb-6 text-90 font-normal text-xl">Flush Index</h2>
