@@ -24,7 +24,47 @@ Route::get('/{resource}/{id}', function (Request $request) {
 
     $algoliaData = new AlgoliaData();
     $algoliaData->index = $resource->searchableAs();
+
+    $algoliaClient = new AlgoliaSearch\Client(config('scout.algolia.id'), config('scout.algolia.secret'));
+    $index = $algoliaClient->initIndex($resource->searchableAs());
+
+    try {
+        $algoliaData->data = $index->getObject($resource->getScoutKey());
+    } catch (\AlgoliaSearch\AlgoliaException $e) {
+        $algoliaData->data = null;
+    }
+
+    return json_encode($algoliaData);
+});
+
+Route::post('/{resource}/{id}', function (Request $request) {
+    $resourceClass = 'App\\' . studly_case($request->resource);
+    $resourceClass = rtrim($resourceClass, 's');
+
+    /** @var Laravel\Scout\Searchable $resource */
+    $resource = $resourceClass::find($request->id);
+
+    $resource->searchable();
+
+    $algoliaData = new AlgoliaData();
+    $algoliaData->index = $resource->searchableAs();
     $algoliaData->data = $resource->toSearchableArray();
+    $algoliaData->data['objectID'] = $resource->getScoutKey();
+
+    return json_encode($algoliaData);
+});
+
+Route::delete('/{resource}/{id}', function (Request $request) {
+    $resourceClass = 'App\\' . studly_case($request->resource);
+    $resourceClass = rtrim($resourceClass, 's');
+
+    /** @var Laravel\Scout\Searchable $resource */
+    $resource = $resourceClass::find($request->id);
+
+    $resource->unsearchable();
+
+    $algoliaData = new AlgoliaData();
+    $algoliaData->index = $resource->searchableAs();
 
     return json_encode($algoliaData);
 });
