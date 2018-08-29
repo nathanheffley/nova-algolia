@@ -5,7 +5,7 @@
 
 <img alt="image" src="https://raw.githubusercontent.com/NathanHeffley/nova-algolia/master/algolia-page.png">
 
-Note: certain features on the main tool page currently only work if you use the default index name for your models. If you are setting a custom `searchableAs` value you will not be able to use the custom page. You can still use the Resource Tool.
+Note: certain features only work if you use the default index name for your models. If you are setting a custom `searchableAs` value some features related to indexing may not work.
 
 ## Installation
 
@@ -46,6 +46,22 @@ public function fields(Request $request)
 ```
 
 <img alt="image" src="https://raw.githubusercontent.com/NathanHeffley/nova-algolia/master/resource-tool.png">
+
+If you want to use the "Import to Algolia" or "Remove from Algolia" actions, you just need to add them to the actions array on your Nova resource.
+
+```php
+// in app/Nova/ResourceName.php
+
+public function actions(Request $request)
+{
+    return [
+        // ...
+
+        new \NathanHeffley\NovaAlgolia\Actions\ImportAlgolia,
+        new \NathanHeffley\NovaAlgolia\Actions\RemoveAlgolia,
+    ];
+}
+```
 
 If you have not set up Scout or Algolia yet, follow the directions from the official instructions: [Algolia and Laravel Scout](https://www.algolia.com/doc/api-client/laravel/algolia-and-scout/).
 
