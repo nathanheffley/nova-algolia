@@ -15,47 +15,6 @@ use NathanHeffley\NovaAlgolia\AlgoliaData;
 |
 */
 
-Route::get('/{resourceClass}/{id}', function (Request $request) {
-    /** @var Laravel\Scout\Searchable $resource */
-    $resource = $request->resourceClass::find($request->id);
-
-    $algoliaData = new AlgoliaData();
-    $algoliaData->index = $resource->searchableAs();
-
-    $algoliaClient = new AlgoliaSearch\Client(config('scout.algolia.id'), config('scout.algolia.secret'));
-    $index = $algoliaClient->initIndex($resource->searchableAs());
-
-    try {
-        $algoliaData->data = $index->getObject($resource->getScoutKey());
-    } catch (\AlgoliaSearch\AlgoliaException $e) {
-        $algoliaData->data = null;
-    }
-
-    return json_encode($algoliaData);
-});
-
-Route::post('/{resourceClass}/{id}', function (Request $request) {
-    /** @var Laravel\Scout\Searchable $resource */
-    $resource = $request->resourceClass::find($request->id);
-
-    $resource->searchable();
-
-    $algoliaData = new AlgoliaData();
-    $algoliaData->index = $resource->searchableAs();
-    $algoliaData->data = $resource->toSearchableArray();
-    $algoliaData->data['objectID'] = $resource->getScoutKey();
-
-    return json_encode($algoliaData);
-});
-
-Route::delete('/{resourceClass}/{id}', function (Request $request) {
-    /** @var Laravel\Scout\Searchable $resource */
-    $resource = $request->resourceClass::find($request->id);
-
-    $resource->unsearchable();
-
-    $algoliaData = new AlgoliaData();
-    $algoliaData->index = $resource->searchableAs();
-
-    return json_encode($algoliaData);
-});
+Route::get('/{resourceClass}/{id}', 'NathanHeffley\NovaAlgolia\Http\Controllers\ResourceToolController@show');
+Route::post('/{resourceClass}/{id}', 'NathanHeffley\NovaAlgolia\Http\Controllers\ResourceToolController@import');
+Route::delete('/{resourceClass}/{id}', 'NathanHeffley\NovaAlgolia\Http\Controllers\ResourceToolController@flush');
