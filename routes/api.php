@@ -59,25 +59,3 @@ Route::delete('/{resourceClass}/{id}', function (Request $request) {
 
     return json_encode($algoliaData);
 });
-
-Route::get('/indexes', function () {
-    $algoliaClient = new AlgoliaSearch\Client(config('scout.algolia.id'), config('scout.algolia.secret'));
-    return $algoliaClient->listIndexes();
-});
-
-Route::post('/indexes/{name}/import', function (Request $request) {
-    $class = 'App\\' . studly_case($request->name);
-    $class = rtrim($class, 's');
-
-    $model = new $class;
-
-    $model::makeAllSearchable();
-
-    return $model::count();
-});
-
-Route::post('/indexes/{name}/flush', function (Request $request) {
-    $algoliaClient = new AlgoliaSearch\Client(config('scout.algolia.id'), config('scout.algolia.secret'));
-    $index = $algoliaClient->initIndex($request->name);
-    return $index->clearIndex();
-});
