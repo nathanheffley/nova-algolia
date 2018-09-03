@@ -16,6 +16,11 @@ class AlgoliaResourceTool extends ResourceTool
         return 'Algolia';
     }
 
+    public function className($className)
+    {
+        return $this->withMeta(['resourceClass' => $className]);
+    }
+
     /**
      * Get the component name for the resource tool.
      *

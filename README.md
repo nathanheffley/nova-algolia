@@ -30,7 +30,7 @@ public function tools()
 }
 ```
 
-If you want to see search information about a `Searchable` model, you'll need to add the resource tool to that model's Nova resource.
+If you want to see search information about a `Searchable` model, you'll need to add the resource tool to that model's Nova resource. Make sure to specify the resource model's class name so the resource tool can load it properly.
 
 ```php
 // in app/Nova/ResourceName.php
@@ -40,7 +40,7 @@ public function fields(Request $request)
     return [
         // ...
 
-        \NathanHeffley\NovaAlgolia\AlgoliaResourceTool::make(),
+        \NathanHeffley\NovaAlgolia\AlgoliaResourceTool::make()->className(\App\ModelName::class),
     ];
 }
 ```

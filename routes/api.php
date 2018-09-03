@@ -15,12 +15,9 @@ use NathanHeffley\NovaAlgolia\AlgoliaData;
 |
 */
 
-Route::get('/{resource}/{id}', function (Request $request) {
-    $resourceClass = 'App\\' . studly_case($request->resource);
-    $resourceClass = rtrim($resourceClass, 's');
-
+Route::get('/{resourceClass}/{id}', function (Request $request) {
     /** @var Laravel\Scout\Searchable $resource */
-    $resource = $resourceClass::find($request->id);
+    $resource = $request->resourceClass::find($request->id);
 
     $algoliaData = new AlgoliaData();
     $algoliaData->index = $resource->searchableAs();
@@ -37,12 +34,9 @@ Route::get('/{resource}/{id}', function (Request $request) {
     return json_encode($algoliaData);
 });
 
-Route::post('/{resource}/{id}', function (Request $request) {
-    $resourceClass = 'App\\' . studly_case($request->resource);
-    $resourceClass = rtrim($resourceClass, 's');
-
+Route::post('/{resourceClass}/{id}', function (Request $request) {
     /** @var Laravel\Scout\Searchable $resource */
-    $resource = $resourceClass::find($request->id);
+    $resource = $request->resourceClass::find($request->id);
 
     $resource->searchable();
 
@@ -54,12 +48,9 @@ Route::post('/{resource}/{id}', function (Request $request) {
     return json_encode($algoliaData);
 });
 
-Route::delete('/{resource}/{id}', function (Request $request) {
-    $resourceClass = 'App\\' . studly_case($request->resource);
-    $resourceClass = rtrim($resourceClass, 's');
-
+Route::delete('/{resourceClass}/{id}', function (Request $request) {
     /** @var Laravel\Scout\Searchable $resource */
-    $resource = $resourceClass::find($request->id);
+    $resource = $request->resourceClass::find($request->id);
 
     $resource->unsearchable();
 

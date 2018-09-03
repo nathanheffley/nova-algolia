@@ -39,7 +39,7 @@
                 algoliaData: [],
                 loading: true,
                 showingConfirmRemoval: false,
-                path: `/nova-vendor/nova-algolia/${this.resourceName}/${this.resourceId}`,
+                path: `/nova-vendor/nova-algolia/${encodeURI(this.field.resourceClass)}/${this.resourceId}`,
             }
         },
 
