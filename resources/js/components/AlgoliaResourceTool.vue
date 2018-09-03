@@ -1,5 +1,8 @@
 <template>
     <loading-card v-if="loading" class="h-12 shadow-none"></loading-card>
+    <div v-else-if="!field.resourceClass">
+        <p>No class name specified, please review the documentation on how to configure this resource tool.</p>
+    </div>
     <div v-else>
         <h3 class="mr-3 text-base text-80 font-bold">Index</h3>
         <div class="flex items-center mb-4">
@@ -44,6 +47,10 @@
         },
 
         mounted() {
+            if (!this.field.resourceClass) {
+                this.loading = false;
+                return;
+            }
             Nova.request(this.path).then(({data}) => {
                 this.algoliaData = data;
                 this.loading = false;
